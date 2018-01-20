@@ -1,0 +1,4 @@
+﻿  stdafx.cpp
+  Parser.cpp
+LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
+  Parser.vcxproj -> C:\Users\Eduardo\source\repos\TestApp\Lib\Debug\Parser.lib
