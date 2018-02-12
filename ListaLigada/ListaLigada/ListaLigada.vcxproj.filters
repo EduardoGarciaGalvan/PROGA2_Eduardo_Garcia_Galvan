@@ -35,11 +35,5 @@
     <ClCompile Include="ListaLigada.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lista.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Nodo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

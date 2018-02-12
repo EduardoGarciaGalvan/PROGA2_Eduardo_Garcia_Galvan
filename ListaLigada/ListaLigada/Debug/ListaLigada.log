@@ -1,7 +1,2 @@
-﻿  stdafx.cpp
-  Nodo.cpp
-  ListaLigada.cpp
-  Lista.cpp
-  Generating Code...
-LIBCMTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol _main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
-C:\Users\Eduardo\source\repos\ListaLigada\Debug\ListaLigada.exe : fatal error LNK1120: 1 unresolved externals
+﻿  ListaLigada.vcxproj -> C:\NWR\Alumnos\Progra2\Eduardo\PROGA2_Eduardo_Garcia_Galvan\ListaLigada\Debug\ListaLigada.exe
+  ListaLigada.vcxproj -> C:\NWR\Alumnos\Progra2\Eduardo\PROGA2_Eduardo_Garcia_Galvan\ListaLigada\Debug\ListaLigada.pdb (Full PDB)
