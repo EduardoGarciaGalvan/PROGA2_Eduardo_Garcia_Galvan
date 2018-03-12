@@ -1,0 +1,4 @@
+﻿  Examen.cpp
+c:\users\eduardo\source\repos\examen\examen\examen.cpp(44): warning C4101: 'Opcion': unreferenced local variable
+c:\users\eduardo\source\repos\examen\examen\examen.cpp(22): warning C4715: 'SeparadorComando': not all control paths return a value
+  Examen.vcxproj -> C:\Users\Eduardo\source\repos\Examen\Debug\Examen.exe
