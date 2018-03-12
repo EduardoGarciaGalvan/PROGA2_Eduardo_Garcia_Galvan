@@ -35,7 +35,7 @@ Nodo* Lista::CrearCarpeta(std::string Nombre) {
 }
 
 int Lista::Contenido() {
-	int Carpetas = 0;
+	int Carpetas = 1;
 	if (Arbol->getPrimerHijo() == NULL)return 0;
 	Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
 	ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
