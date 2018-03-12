@@ -16,7 +16,6 @@ public:
 	void AccederCarpeta(std::string);
 	void RetrocederCarpeta();
 private:
-	int Carpetas = 0;
 	Nodo* Arbol;
 	bool CarpetaValida(std::string);
 };

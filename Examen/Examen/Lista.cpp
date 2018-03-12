@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Lista.h"
+#include <string>
 
 
 Lista::Lista()
@@ -20,7 +21,7 @@ Lista::~Lista()
 bool Lista::CarpetaValida(std::string Nombre) {
 	if (Arbol->getPrimerHijo() == NULL)return false;
 	Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
-	for (int i = 0; i < Carpetas; i++) {
+	for (int i = 0; i < Contenido(); i++) {
 		if (ArbolAuxiliar->getNombre() == Nombre)return true;
 		ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
 	}
@@ -34,10 +35,11 @@ Nodo* Lista::CrearCarpeta(std::string Nombre) {
 }
 
 int Lista::Contenido() {
+	int Carpetas = 0;
 	if (Arbol->getPrimerHijo() == NULL)return 0;
 	Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
 	ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
-	while (ArbolAuxiliar != Arbol->getPrimerHijo()) {
+	while (ArbolAuxiliar != NULL) {
 		Carpetas++;
 		ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
 	}
@@ -72,27 +74,36 @@ void Lista::InsertarCarpeta(std::string Nombre) {
 }
 
 void Lista::MostrarCarpetas() {
-	if (Arbol->getPrimerHijo() == NULL) return;
-	else {
+	if (Arbol->getPrimerHijo() != NULL){
 		Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
-		for (int i = 0; i < Carpetas; i++)
-		{
-			std::cout << &ArbolAuxiliar->getNombre() << std::endl;
-			ArbolAuxiliar->setSiguienteHermano(ArbolAuxiliar->getSiguienteHermano());
-		}
+		std::string Nombre;
+		do{
+			Nombre = ArbolAuxiliar->getNombre();
+			std::cout << Nombre << std::endl;
+			ArbolAuxiliar=ArbolAuxiliar->getSiguienteHermano();
+		} while (ArbolAuxiliar!=NULL);
 	}
+	return;
 }
 
 bool Lista::BorrarCarpeta(std::string Nombre) {
 	if (isEmpty())return false;
 	Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
-	Nodo* ArbolAuxiliar2 = ArbolAuxiliar->getSiguienteHermano();
-	if (ArbolAuxiliar->getNombre() == Nombre) {
-		Arbol->setPrimerHijo(ArbolAuxiliar2);
-		ArbolAuxiliar->getHermanoAnterior()->setSiguienteHermano(ArbolAuxiliar2);
-		ArbolAuxiliar2->setHermanoAnterior(ArbolAuxiliar->getHermanoAnterior());
+	if (ArbolAuxiliar->getSiguienteHermano() != NULL) {
+		Nodo* ArbolAuxiliar2 = ArbolAuxiliar->getSiguienteHermano();
+		if (ArbolAuxiliar->getNombre() == Nombre) {
+			Arbol->setPrimerHijo(ArbolAuxiliar2);
+		}
+		else while (ArbolAuxiliar2 != NULL) {
+			if (ArbolAuxiliar2->getNombre() == Nombre) {
+				ArbolAuxiliar = ArbolAuxiliar2->getHermanoAnterior();
+				ArbolAuxiliar->setSiguienteHermano(ArbolAuxiliar2->getSiguienteHermano());
+			}
+			ArbolAuxiliar2 = NULL;
+			return true;
+		}
 	}
-	delete ArbolAuxiliar;
+		ArbolAuxiliar = NULL;
 	return true;
 }
 
@@ -100,7 +111,7 @@ bool Lista::Exists(std::string Nombre) {
 	if (Arbol->getPrimerHijo() == NULL)return false;
 	else {
 		Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
-		for (int i = 0; i < Carpetas; i++)
+		for (int i = 0; i < Contenido(); i++)
 		{
 			if (ArbolAuxiliar->getNombre() == Nombre)return true;
 			ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
@@ -113,15 +124,18 @@ void Lista::AccederCarpeta(std::string Nombre)
 {
 	if (Exists(Nombre)) {
 		Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
-		for (int i = 0; i < Carpetas; i++)
+		for (int i = 0; i < Contenido(); i++)
 		{
+			if (ArbolAuxiliar->getNombre() == Nombre) {
+				Arbol = ArbolAuxiliar;
+				return;
+			}
 			ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
-			if (ArbolAuxiliar->getNombre() == Nombre) Arbol=ArbolAuxiliar;
 		}
 	}
+	else std::cout << "Nombre invalido" << std::endl;
 }
 
 void Lista::RetrocederCarpeta() {
-	Nodo* ArbolAuxiliar = Arbol->getPadre();
-	Arbol = ArbolAuxiliar;
+	Arbol = Arbol->getPadre();
 }
