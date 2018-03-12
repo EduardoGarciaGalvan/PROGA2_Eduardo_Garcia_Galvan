@@ -14,7 +14,7 @@ public:
 	bool BorrarCarpeta(std::string);
 	bool Exists(std::string);
 	void AccederCarpeta(std::string);
-	void RetrocederCarpeta(std::string);
+	void RetrocederCarpeta();
 private:
 	int Carpetas = 0;
 	Nodo* Arbol;

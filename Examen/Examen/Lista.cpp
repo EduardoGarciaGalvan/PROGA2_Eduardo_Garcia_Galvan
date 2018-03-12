@@ -34,9 +34,9 @@ Nodo* Lista::CrearCarpeta(std::string Nombre) {
 }
 
 int Lista::Contenido() {
-	Nodo* ArbolAuxiliar = Arbol;
-	if (ArbolAuxiliar->getPrimerHijo() == NULL)return 0;
-	ArbolAuxiliar = ArbolAuxiliar->getPrimerHijo()->getSiguienteHermano();
+	if (Arbol->getPrimerHijo() == NULL)return 0;
+	Nodo* ArbolAuxiliar = Arbol->getPrimerHijo();
+	ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
 	while (ArbolAuxiliar != Arbol->getPrimerHijo()) {
 		Carpetas++;
 		ArbolAuxiliar = ArbolAuxiliar->getSiguienteHermano();
@@ -45,13 +45,17 @@ int Lista::Contenido() {
 }
 
 void Lista::InsertarCarpeta(std::string Nombre) {
-	Nodo *Carpeta = CrearCarpeta(Nombre);
+	Nodo* Carpeta = CrearCarpeta(Nombre);
 	Carpeta->setPrimerHijo(NULL);
 	Carpeta->setSiguienteHermano(NULL);
 	Carpeta->setHermanoAnterior(NULL);
 	if (Arbol == NULL) {
-		Carpeta->setPadre(NULL);
-		Arbol = Carpeta;
+		Nodo* ArbolAuxiliar= CrearCarpeta("Unidad C");
+		ArbolAuxiliar->setPrimerHijo(Carpeta);
+		ArbolAuxiliar->setSiguienteHermano(NULL);
+		ArbolAuxiliar->setHermanoAnterior(NULL);
+		Carpeta->setPadre(ArbolAuxiliar);
+		Arbol = ArbolAuxiliar;
 	}
 	else {
 		if (Arbol->getPrimerHijo() == NULL) {
@@ -63,8 +67,8 @@ void Lista::InsertarCarpeta(std::string Nombre) {
 			ArbolAuxiliar->setSiguienteHermano(Carpeta);
 			Carpeta->setHermanoAnterior(ArbolAuxiliar);
 		}
+		Carpeta->setPadre(Arbol);
 	}
-	Carpeta->setPadre(Arbol);
 }
 
 void Lista::MostrarCarpetas() {
@@ -117,7 +121,7 @@ void Lista::AccederCarpeta(std::string Nombre)
 	}
 }
 
-void Lista::RetrocederCarpeta(std::string Nombre) {
+void Lista::RetrocederCarpeta() {
 	Nodo* ArbolAuxiliar = Arbol->getPadre();
-	if (ArbolAuxiliar->getNombre() == Nombre)Arbol = ArbolAuxiliar;
+	Arbol = ArbolAuxiliar;
 }
