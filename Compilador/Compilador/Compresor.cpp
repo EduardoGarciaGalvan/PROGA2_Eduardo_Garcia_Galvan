@@ -64,5 +64,6 @@ bool Compresor::Comprimir(std::string Nombre) {
 	}
 	ArchivoT.open(this->Nombre, std::ios::out | std::ios::app);
 	ArchivoT << Texto;
+	ArchivoT.close();
 	return true;
 }
